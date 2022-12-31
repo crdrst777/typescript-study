@@ -1,5 +1,5 @@
-import React from "react";
 import Todo from "../models/todo";
+import TodoItem from "./TodoItem";
 
 // 이렇게 React.FC라고 타입을 정의함으로써 이 함수가 함수형 컴포넌트 (Functional Component)로 동작한다는 걸 명확히 함
 // React.FC는 제네릭 타입임. type FC<P = {}> = FunctionComponent<P>;
@@ -8,9 +8,10 @@ import Todo from "../models/todo";
 // items는 객체로 채워진 배열이고 그 객체는 Todo 클래스의 정의에 부합하는 객체입니다
 const Todos: React.FC<{ items: Todo[] }> = (props) => {
   return (
+    // itmes는 [] , item은 그 안의 각 {}임.
     <ul>
       {props.items.map((item) => (
-        <li key={item.id}>{item.text}</li>
+        <TodoItem key={item.id} text={item.text}></TodoItem>
       ))}
     </ul>
   );
