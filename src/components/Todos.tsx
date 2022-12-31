@@ -1,8 +1,18 @@
-function Todos() {
+import React from "react";
+import Todo from "../models/todo";
+
+// 이렇게 React.FC라고 타입을 정의함으로써 이 함수가 함수형 컴포넌트 (Functional Component)로 동작한다는 걸 명확히 함
+// React.FC는 제네릭 타입임. type FC<P = {}> = FunctionComponent<P>;
+// class 이름은 아래처럼 타입으로도 사용할 수 있다. Todo
+// items에 받을 값을 Todo 배열로 바꿉니다. Todo 클래스로 만든 배열이요, 즉
+// items는 객체로 채워진 배열이고 그 객체는 Todo 클래스의 정의에 부합하는 객체입니다
+const Todos: React.FC<{ items: Todo[] }> = (props) => {
   return (
     <ul>
-      <li></li>
+      {props.items.map((item) => (
+        <li key={item.id}>{item.text}</li>
+      ))}
     </ul>
   );
-}
+};
 export default Todos;
