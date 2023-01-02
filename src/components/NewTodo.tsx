@@ -1,5 +1,6 @@
 // 사용자에게 입력창을 제공하고 입력받은 내용을 가져오는 컴포넌트
 import React, { useRef } from "react";
+import classes from "./NewTodo.module.css";
 
 // '() =>' 함수 타입. 괄호 안에는 인수 즉 매개변수를, 화살표 다음에는 반환 타입을 정의한다.
 // onAddTodo: (text: string) => void
@@ -27,7 +28,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={classes.form}>
       {/* htmlFor과 id로 해서 연결한거임 */}
       <label htmlFor="text">Todo text</label>
       <input type="text" id="text" ref={todoTextInputRef}></input>
