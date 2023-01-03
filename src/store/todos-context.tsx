@@ -15,7 +15,7 @@ export const TodosContext = React.createContext<TodosContextObj>({
 
 // 컨텍스트를 제공해주는 컴포넌트. 컨텍스트의 상태(state)를 관리하는 역할을 함.
 // :React.FC는, 여기에 함수형 컴포넌트를 저장한다는 표시임.
-const TodosContextProvider: React.FC = (props) => {
+const TodosContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodoHandler = (todoText: string) => {
@@ -36,7 +36,7 @@ const TodosContextProvider: React.FC = (props) => {
 
   return (
     <TodosContext.Provider value={contextValue}>
-      {props.children}
+      {children}
     </TodosContext.Provider>
   );
 };
