@@ -1,11 +1,14 @@
 // 사용자에게 입력창을 제공하고 입력받은 내용을 가져오는 컴포넌트
-import React, { useRef } from "react";
+import { useRef, useContext } from "react";
 import classes from "./NewTodo.module.css";
+import { TodosContext } from "../store/todos-context";
 
 // '() =>' 함수 타입. 괄호 안에는 인수 즉 매개변수를, 화살표 다음에는 반환 타입을 정의한다.
 // onAddTodo: (text: string) => void
 // ----> onAddTodo함수를 props로 받아올건데, 이 함수 타입의 매개변수 타입은 문자열(매개변수 이름은 아무거나해도됨), 반환값은 없음
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
+
   const todoTextInputRef = useRef<HTMLInputElement>(null);
   // React.FormEvent -> 폼 제출 이벤트 타입. 리액트 패키지에서 제공하는 타입.
   const submitHandler = (event: React.FormEvent) => {
@@ -24,7 +27,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
     // 입력된 내용을 todos 목록에 추가하기. App.tsx에서 함수를 가져올거임.
-    props.onAddTodo(enteredText);
+    todosCtx.addTodo(enteredText);
   };
 
   return (
